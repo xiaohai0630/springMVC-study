@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--文件起名的时候：习惯xxx－xxx的格式，前面是自己起的名字，后面用来区分给谁配置-->
+
+    <!--这三部是固定的格式！！！-->
+    <!--1、配置springMVC的注解驱动：可以使用springMVC的注解-->
+    <!--要选择mvc结尾的！！！（ann...）-->
+    <mvc:annotation-driven/>
+
+    <!--2、配置spring的注解扫描（com...）-->
+    <context:component-scan base-package="com.lanou"/>
+
+    <!--3、对资源文件处理的方式（前端资源－－前端的静态文件－－js、css、img、视频、音乐等）-->
+    <!--写好之后是固定的（def...）-->
+    <!--springMVC不处理前端的静态资源-->
+    <mvc:default-servlet-handler/>
+
+    <!--视图解析器-->
+    <!--id和class都是固定的！！！-->
+    <bean id="jspViewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+        <!--配置两个属性-->
+        <!--prefix：jsp文件路径前缀（inf后面有个斜杠！）-->
+        <property name="prefix" value="/WEB-INF/"/>
+        <!--suffix：jsp文件路径后缀（找到一类文件）-->
+        <property name="suffix" value=".jsp"/>
+
+        <!--拼接路径：/WEB-INF/*.jsp-->
+
+    </bean>
+
+</beans>

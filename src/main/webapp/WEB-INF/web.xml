@@ -1,0 +1,30 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <!--过滤器！！！-->
+
+  <!--配置servlet，只需要这一个class-->
+  <servlet>
+    <servlet-name>SpringServlet</servlet-name>
+
+    <!--接收所有的请求，统一处理-->
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+    <!--初始化参数（读取spring－servlet文件）-->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-servlet.xml</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SpringServlet</servlet-name>
+    <!--可以写斜杠或者＊，但是如果写了：/*  就会把所有的请求都传过来，包括图片等静态资源-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+</web-app>
