@@ -23,6 +23,7 @@
 
 </body>
 
+<%--jq和ajax--%>
 <script src="/js/jquery-3.2.1.js"></script>
 
 <script type="text/javascript">
@@ -52,7 +53,7 @@
          */
 
 
-        // 获取到的都是list集合（通过id标签的时候也是list，只是它只有一个元素）
+        // 获取到的都是list集合（通过id标签的时候也是list，不过它只有一个元素）
         // 赋值的方法（括号中什么也不写就是取值）
         $("#div1").html("aaaa")
 
