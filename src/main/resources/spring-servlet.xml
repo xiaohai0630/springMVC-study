@@ -32,7 +32,7 @@
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 
         <!--配置两个属性-->
-        <!--prefix：jsp文件路径前缀（inf后面有个斜杠！）-->
+        <!--prefix：jsp文件路径前缀（INF后面有个斜杠！）-->
         <property name="prefix" value="/WEB-INF/"/>
         <!--suffix：jsp文件路径后缀（找到一类文件）-->
         <property name="suffix" value=".jsp"/>
