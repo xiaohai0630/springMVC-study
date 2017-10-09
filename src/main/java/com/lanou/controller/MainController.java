@@ -13,15 +13,18 @@ import java.util.Map;
 public class MainController {
 
     /**
-     * 注解有四种：
-     * @Controller
-     *
+     * Spring MVC 4 中常用的注解：
+     * @Controller ：允许自动检测定义在类路径下的组件并自动注册
+     *             需要在spring－servlet.xml的头文件中引入spring－context
+     * @RequestMapping ：
+     * @PathVariable
+     * @RequestParam
      */
 
     // /index-->home.jsp
 
     // 写给springMVC的，给它调用（自己是不调用这个方法的）
-    // 返回的字符串给： bean id="jspViewResolver" ，作为字符拼接用（找目标文件）
+    // 返回的字符串给：bean id="jspViewResolver" ，作为字符拼接用（找目标文件）
 
     /**
      * springMVC特有的注解，规定了访问home.jsp的value值
@@ -34,6 +37,7 @@ public class MainController {
     public String frontPage() {
         // 对应了WEB－INF中想要访问的xxx.jsp
         // 访问的时候写：index（不是去找index.jsp！！！）
+        // 拼接在WEB－INF后面的是home，不是index
         return "home";
     }
 
@@ -94,7 +98,8 @@ public class MainController {
     // /infopage?username=2222
     // /infopage/2222/333/444
 
-    // /params?username=222&password=333 --> 参数的个数和名称必须相同
+    // 在地址栏输入：/params?username=222&password=333 --> 参数的个数和名称必须相同
+    // 这次的注解是：@RequestParam
     @RequestMapping(value = "/params")
     public String paramPage(@RequestParam("username") String name,
                             @RequestParam("password") String pwd) {
@@ -105,10 +110,14 @@ public class MainController {
         return "param";
     }
 
-    // 用map和实体类的方式比较常用
-
-    // 参数比较多的时候-->参数的个数是动态的
-    // 多个参数之间用&连接，也可以不写，map就是空的
+    /**
+     * 用map和实体类的方式比较常用
+     *
+     * 参数比较多的时候-->参数的个数是动态的
+     * 多个参数之间用&连接
+     * 在地址栏输入：/content?a=111&b=222：前面是key，后面是value
+     * 什么都不写的时候map就是空的
+     */
     @RequestMapping(value = "/content")
     public String contentPage(@RequestParam Map<String, String> params) {
 
@@ -117,11 +126,20 @@ public class MainController {
         return "home";
     }
 
-    // get/post
-    // 配置一个实体类
-    // 传递的参数是实体类中的值，参数名要对应，数量可以不同
-    // post请求不能直接通过浏览器访问
-    @RequestMapping(value = "/stuinfo", method = RequestMethod.POST)
+    /**
+     * get/post
+     * 配置一个实体类
+     * 传递的参数是实体类中的值，参数名要对应（错的不会显示），可以只写其中几个
+     * post请求不能直接通过浏览器访问
+     *
+     * get请求的时候可以直接通过地址栏访问
+     * 地址栏输入：/stuinfo?username=1&password=2&hobby=a
+     * 哪一项不写，哪一项就是空的（null）
+     *
+     * @param student
+     * @return
+     */
+    @RequestMapping(value = "/stuinfo", method = RequestMethod.GET)
     public String studentPage(Student student) {
 
         System.out.println(student);
@@ -139,8 +157,10 @@ public class MainController {
     @RequestMapping(value = "/studentinfo")
     public Student studentInfo(Student student) {
         // 接收参数
+        System.out.println("Ajax的student：---" + student);
 
         // 把接收的json数据又当成参数传回去，实际项目中不能这样写！！！
+        // 实际应该有一些处理的过程等
         return student;
     }
 
@@ -151,8 +171,9 @@ public class MainController {
     // 报错的时候用的，可以不加
     // annotation
 
-    // Restful标准（json格式的标准规范！）
     /**
+     * Restful标准（json格式的标准规范！）
+     *
      * 1、必须是map或实体类，也就是必须要是key－value形式
      *    最外层一定是key－value的形式，里面可以包含其它形式的
      * 2、必须要有反馈信息：errorCode（错误代码）、msg（具体的错误信息）

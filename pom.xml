@@ -9,6 +9,7 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
+        <!--单元测试：改一下版本4.12-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -17,7 +18,7 @@
         </dependency>
 
         <!--
-        需要新加的三个配置：
+        springMVC需要新加的三个配置：
         spring－core
         spring－webmvc
         jstl1.2
@@ -43,12 +44,14 @@
             <version>1.2</version>
         </dependency>
 
+        <!---->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>4.3.6.RELEASE</version>
         </dependency>
 
+        <!--json的配置：-->
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -65,9 +68,9 @@
         </dependency>
 
     </dependencies>
+
     <build>
         <finalName>SpringMVC_001</finalName>
     </build>
-
 
 </project>

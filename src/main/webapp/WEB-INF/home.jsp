@@ -10,6 +10,8 @@
 <head>
     <title>首页</title>
 </head>
+
+<%--～～～～～～～～～～～～～～～～～～～～～～～～～～～～--%>
 <body>
 
 <%--用jq写ajax--%>
@@ -22,6 +24,7 @@
 <div id="div3">ajax</div>
 
 </body>
+<%--～～～～～～～～～～～～～～～～～～～～～～～～～～～～--%>
 
 <%--jq和ajax--%>
 <script src="/js/jquery-3.2.1.js"></script>
@@ -49,28 +52,25 @@
          *
          * 4、如果jq的方法没有明显的返回值，那这个方法会返回对象本身
          * 链式编程风格：依次调用（如果有返回值的时候就会结束了）
-         *
          */
-
 
         // 获取到的都是list集合（通过id标签的时候也是list，不过它只有一个元素）
         // 赋值的方法（括号中什么也不写就是取值）
-        $("#div1").html("aaaa")
+        $("#div1").html("aaaa");
 
         // 给id赋值
-        $("#div1").attr("id", "div2")
+        $("#div1").attr("id", "div2");
 
         // 获取id的值
-        console.log($("#div1").attr("id"))
+        console.log($("#div1").attr("id"));
 
 //        $("#div1").click(function () {
 //            $(this).html("aaa")
 //        })
-
     }
 
     // 调用方法
-    func1()
+    func1();
 
     // ajax用法
     function func2() {
@@ -80,6 +80,7 @@
             // 请求访问的地址
             url: "/studentinfo",
             // 参数列表：json形式
+            // 不匹配的参数就不会显示
             data: {
                 username: $("#div3").html(),
                 password:"222",
@@ -87,6 +88,7 @@
             },
 
             // 请求方式默认是get
+            type: "GET",
 
             // 判断返回结果，后面是一个匿名函数，传回来的参数就是result（名字自己定义）
             success:function (result) {
