@@ -16,9 +16,22 @@ public class MainController {
      * Spring MVC 4 中常用的注解：
      * @Controller ：允许自动检测定义在类路径下的组件并自动注册
      *             需要在spring－servlet.xml的头文件中引入spring－context
-     * @RequestMapping ：
-     * @PathVariable
-     * @RequestParam
+     *             给全部的controller配置一个bean
+     *
+     * @RequestMapping ：将URL映射到整个类或特定的处理方法上，一般来说，
+     *                   用于类中，表示类中的所有响应请求的方法都是以该地址作为父路径，
+     *                   而方法级别的注解只是映射为一个特定的HTTP方法请求（get、post等）
+     *                   或HTTP请求参数
+     *
+     * @PathVariable ：可以使用它注解方法参数并将其绑定到URI模版变量的值上
+     *                 支持使用正则表达式
+     *
+     * @RequestParam ：用于在SpringMVC后台控制层获取参数，多个参数之间用逗号隔开
+     *                 @RequestParam("username") String name
+     *
+     * @ResponseBody ：作用是将返回类型直接输入到HTTP response body中，
+     *                 在输出JSON格式的数据时，会经常用到
+     *                 不通过视图解析器，不会跳转jsp页面
      */
 
     // /index-->home.jsp
