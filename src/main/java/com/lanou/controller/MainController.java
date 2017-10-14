@@ -111,7 +111,8 @@ public class MainController {
     // /infopage?username=2222
     // /infopage/2222/333/444
 
-    // 在地址栏输入：/params?username=222&password=333 --> 参数的个数和名称必须相同
+    // 在地址栏输入：/params?username=222&password=333
+    //      --> 参数的个数和名称必须相同，但是顺序可以不同，按照名字匹配
     // 这次的注解是：@RequestParam
     @RequestMapping(value = "/params")
     public String paramPage(@RequestParam("username") String name,
@@ -141,16 +142,17 @@ public class MainController {
 
     /**
      * get/post
-     * 配置一个实体类
-     * 传递的参数是实体类中的值，参数名要对应（错的不会显示），可以只写其中几个
+     * 传递的参数是实体类中的值，参数名要对应（错的不会显示）
+     * 可以只写其中几个，顺序也可以随意，不写的为null
      * post请求不能直接通过浏览器访问
      *
      * get请求的时候可以直接通过地址栏访问
      * 地址栏输入：/stuinfo?username=1&password=2&hobby=a
-     * 哪一项不写，哪一项就是空的（null）
      *
-     * @param student
-     * @return
+     * 这里的method写RequestMethod.GET或者不写都可以
+     * 写RequestMethod.POST就不能从地址栏直接访问了
+     *
+     * @param student 类
      */
     @RequestMapping(value = "/stuinfo", method = RequestMethod.GET)
     public String studentPage(Student student) {
@@ -163,14 +165,16 @@ public class MainController {
     // 怎么样使用springMVC返回/json/xml数据
     // springMVC需要jackson库（默认的，也可以用其它的库，但是需要额外配置）
 
-    // 1、返回json数据
+    // 数据接口！！！
+
+    // 1、从jsp页面返回json数据到后端
     // 返回json的标志，不通过视图解析器，不跳转jsp页面：@ResponseBody
     // 将需要的类返回就可以了
     @ResponseBody
     @RequestMapping(value = "/studentinfo")
     public Student studentInfo(Student student) {
         // 接收参数
-        System.out.println("Ajax的student：---" + student);
+        System.out.println("Ajax接收到的student：---" + student);
 
         // 把接收的json数据又当成参数传回去，实际项目中不能这样写！！！
         // 实际应该有一些处理的过程等
@@ -192,7 +196,7 @@ public class MainController {
      * 2、必须要有反馈信息：errorCode（错误代码）、msg（具体的错误信息）
      *    错误代码是自己定义的
      * 3、必须要精简，不要把没有意义、将来也不会用到的字段放到json中
-     * 4、文档必须要详细，数据接口文档，前端页面流程文档，
+     * 4、文档必须要详细，数据接口文档，前端页面流程文档
      */
 
 }
